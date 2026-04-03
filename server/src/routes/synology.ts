@@ -8,7 +8,6 @@ import {
     getSynologyStatus,
     testSynologyConnection,
     listSynologyAlbums,
-    linkSynologyAlbum,
     syncSynologyAlbumLink,
     searchSynologyPhotos,
     getSynologyAssetInfo,
