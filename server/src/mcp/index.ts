@@ -72,16 +72,16 @@ function verifyToken(req: Request): User | null {
   // Accept token from Authorization header or ?token= query parameter
   const authHeader = req.headers['authorization'];
   const queryToken = Array.isArray(req.query.token) ? req.query.token[0] : (req.query.token as string | undefined);
-  const rawToken = (authHeader && authHeader.split(' ')[1]) || queryToken;
-  if (!rawToken) return null;
+  const token = (authHeader && authHeader.split(' ')[1]) || queryToken;
+  if (!token) return null;
 
   // Long-lived MCP API token (trek_...)
-  if (rawToken.startsWith('trek_')) {
-    return verifyMcpToken(rawToken);
+  if (token.startsWith('trek_')) {
+    return verifyMcpToken(token);
   }
 
   // Short-lived JWT
-  return verifyJwtToken(rawToken);
+  return verifyJwtToken(token);
 }
 
 export async function mcpHandler(req: Request, res: Response): Promise<void> {
